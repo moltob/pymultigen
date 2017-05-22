@@ -2,10 +2,18 @@
 
 import sys
 from setuptools import setup, find_packages
-import pyecore
+from setuptools.command.test import test as TestCommand
 
 if sys.version_info < (3, 3):
     sys.exit('Sorry, Python < 3.3 is not supported')
+
+
+class PyTest(TestCommand):
+    def run_tests(self):
+        import pytest
+        errno = pytest.main([])
+        sys.exit(errno)
+
 
 setup(
     name='pymultigen',
@@ -22,6 +30,7 @@ setup(
     include_package_data=True,
     install_requires=[],
     tests_require=['pytest'],
+    cmdclass={'test': PyTest},
 
     license='MIT License',
     classifiers=[
