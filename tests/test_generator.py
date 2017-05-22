@@ -1,7 +1,7 @@
 import os
 from unittest import mock
 
-from pygen.generator import Generator, Task, TemplateFileTask
+from multigen.generator import Generator, Task, TemplateFileTask
 
 
 def test__generator__generate__no_tasks():

@@ -2,7 +2,7 @@
 import logging
 import os
 
-from pygen.formatter import format_raw
+from .formatter import format_raw
 
 _logger = logging.getLogger(__name__)
 
