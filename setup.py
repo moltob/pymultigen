@@ -39,7 +39,7 @@ setup(
 
     packages=find_packages(exclude=['tests']),
     install_requires=[],
-    tests_require=['pytest'],
+    tests_require=['pytest', 'jinja2', 'autopep8'],  # optional packages tested
     cmdclass={'test': PyTest},
 
     license='MIT License',
