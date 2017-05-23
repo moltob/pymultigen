@@ -7,6 +7,9 @@ pymultigen - Multi-file frontend for single-file code generators
 .. image:: https://badge.fury.io/py/pymultigen.svg
     :target: https://badge.fury.io/py/pymultigen
 
+.. image:: https://coveralls.io/repos/github/moltob/pymultigen/badge.svg?branch=master
+    :target: https://coveralls.io/github/moltob/pymultigen?branch=master
+
 This small library adds multi-file management on top of one or more existing single-file code
 generators.
 
