@@ -10,6 +10,9 @@ script:
   - python setup.py test -v --cov=multigen
 after_success:
   - coveralls
-  - if [ -n "$TRAVIS_TAG" ]; then
-      # push to PyPI here
-    fi
+deploy:
+  provider: pypi
+  user: $PYPI_USER
+  password: $PYPI_PASSWORD
+  on:
+    tags: true
