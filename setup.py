@@ -38,8 +38,6 @@ setup(
     author_email='mike@mpagel.de',
 
     packages=find_packages(exclude=['tests']),
-    package_data={'': ['LICENSE', 'README.rst']},
-    include_package_data=True,
     install_requires=[],
     tests_require=['pytest'],
     cmdclass={'test': PyTest},
