@@ -1,0 +1,15 @@
+language: python
+python:
+  - "3.3"
+  - "3.4"
+  - "3.5"
+  - "3.6"
+install:
+  - pip install pytest pytest-cov coveralls
+script:
+  - python setup.py test -v --cov=multigen
+after_success:
+  - coveralls
+  - if [ -n "$TRAVIS_TAG" ]; then
+      # push to PyPI here
+    fi
