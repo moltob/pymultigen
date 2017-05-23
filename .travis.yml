@@ -7,7 +7,7 @@ python:
 install:
   - pip install pytest pytest-cov coveralls
 script:
-  - python setup.py test -a -v --cov=multigen
+  - python setup.py test -a -v -a --cov=multigen
 after_success:
   - coveralls
 deploy:
