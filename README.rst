@@ -13,6 +13,8 @@ pymultigen - Multi-file frontend for single-file code generators
 .. image:: https://img.shields.io/badge/License-MIT-yellow.svg
     :target: https://opensource.org/licenses/MIT
 
+.. image:: https://img.shields.io/badge/conttributions-welcome-brightgreen.svg
+
 This small library adds multi-file management on top of one or more existing single-file code
 generators.
 
