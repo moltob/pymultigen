@@ -167,11 +167,14 @@ in ``generator.py`` to get more insights or drop me a note if this is something 
 Formatters
 ~~~~~~~~~~
 
-Writing a new formatter is trivial: Simply create a function that transforms an input string into the nicely formatted output string. If you want to get your formatter added to pymultigen, please make sure that:
+Writing a new formatter is trivial: Simply create a function that transforms an input string into
+the nicely formatted output string. If you want to get your formatter added to pymultigen, please
+make sure that:
 
 * New dependencies (like autopep8 in the existing pep8 formatter) are only imported in the
   formatting function. This way user only pay for what they use.
-* Please write unittests and add your possible dependencies to the ``tests_require`` argument in ``setup.py``.
+* Please write unittests and add your possible dependencies to the ``tests_require`` argument in
+  ``setup.py``.
 
 There is not much more to it.
 
