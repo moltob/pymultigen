@@ -10,6 +10,9 @@ pymultigen - Multi-file frontend for single-file code generators
 .. image:: https://coveralls.io/repos/github/moltob/pymultigen/badge.svg?branch=master
     :target: https://coveralls.io/github/moltob/pymultigen?branch=master
 
+.. image:: https://img.shields.io/badge/License-MIT-yellow.svg
+    :target: https://opensource.org/licenses/MIT
+
 This small library adds multi-file management on top of one or more existing single-file code
 generators.
 
@@ -150,3 +153,24 @@ simply pass the appropriate formatter during task instantiation:
             MyTask(formatter=multigen.formatter.format_autopep8),
         ]
 
+Extending pymutigen
+-------------------
+
+Contributions welcome!
+
+Below the most typical extension scenarios are described. Note that in theory pymultigen can be used
+with *any* code that produces text, not just a templating engine. Take a look at the class hierarchy
+in ``generator.py`` to get more insights or drop me a note if this is something you plan to do.
+
+Formatters
+~~~~~~~~~~
+
+Writing a new formatter is trivial: Simply create a function that transforms an input string into the nicely formatted output string. If you want to get your formatter added to pymultigen, please make sure that:
+
+* New dependencies (like autopep8 in the existing pep8 formatter) are only imported in the
+  formatting function. This way user only pay for what they use.
+* Please write unittests and add your possible dependencies to the ``tests_require`` argument in ``setup.py``.
+
+There is not much more to it.
+
+Code
