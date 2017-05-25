@@ -153,6 +153,8 @@ simply pass the appropriate formatter during task instantiation:
             MyTask(formatter=multigen.formatter.format_autopep8),
         ]
 
+        ...
+
 Extending pymutigen
 -------------------
 
@@ -173,4 +175,46 @@ Writing a new formatter is trivial: Simply create a function that transforms an 
 
 There is not much more to it.
 
-Code
+Templating engine
+~~~~~~~~~~~~~~~~~
+
+For a live sample, look at the Jinja2 integration in ``jinja.py``. For your templating engine ``X``,
+you probably have to write small ``Generator`` and ``Task`` base classes like this:
+
+.. code-block:: python
+
+    class XGenerator(TemplateGenerator):
+
+        def __init__(self, environment=None, **kwargs):
+            super().__init__(**kwargs)
+            # Add any attributes to the generator that are static with respect to a full generation
+            # run (over all files), like a Jinja2 environment.
+            ...
+
+
+    class XTask(TemplateFileTask):
+
+        def generate_file(self, element, filepath):
+            """Actual generation of element."""
+
+Each element that is iterated over from the input model is eventually passed to the tasks's
+``generate_file`` method. Here simply call you template engine to produce the output string. You
+also want to apply the optional formatter before writing the string to disk. This is how the Jinja
+task does it:
+
+.. code-block:: python
+
+    def generate_file(self, element, filepath):
+        template = self.environment.get_template(self.template_name)
+        context = self.create_template_context(element=element)
+
+        with open(filepath, 'wt') as file:
+            file.write(self.formatter(template.render(**context)))
+
+The implementation shows two more things:
+
+* The template to be used is retrieved from an ``environment`` that is specific to the template
+  engine. Such an environment is usually passed down from the ``Generator`` class to the ``Task``.
+* ``create_template_context`` is a function implemented in base class ``TemplateTask``. It
+  implements the very common case of dictionaries being used as template context objects. Of course
+  you can override this if it doesn't match your engine.
