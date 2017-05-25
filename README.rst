@@ -16,11 +16,11 @@ generators.
 Why would I need pymultigen?
 ----------------------------
 
-Code generators like Mako or Jinja are great and can be used to generate just about any kind of
-textual output from templates with a nice template language. They are very mature and battle-proven.
-However, most of those generators have their origin in the web application domain. The typical
-usecase is to dynamically render a single HTTP response (most of the time an HTML page) from one or
-more templates. *One* HTML page.
+Code generators like `Mako <http://www.makotemplates.org/>`_ or `Jinja <http://jinja.pocoo.org/>`_
+are great and can be used to generate just about any kind of textual output from templates with a
+nice template language. They are very mature and battle-proven. However, most of those generators
+have their origin in the web application domain. The typical usecase is to dynamically render a
+single HTTP response (most of the time an HTML page) from one or more templates. *One* HTML page.
 
 If you want to use these generators in other scenarious, e.g. to generate code or reports, but not
 to *one* but to *multiple* files in different folders, pymultigen can help. It simply adds an easy
@@ -32,9 +32,9 @@ Installation
 pymultigen comes in form or a regular Python distribution and can be installed from Github or PyPI
 with a simple:
 
-```
-$ pip install pymultigen
-```
+.. code-block:: shell
+
+    $ pip install pymultigen
 
 The library works with any version of Python >= 3.3.
 
@@ -70,8 +70,9 @@ extend pymultigen with a new integration.
 Using the Jinja2 integration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-You may want to check out pyecoregen, a code generator from pyecore-based models to Python classes.
-It is a concrete Jinja2-based code generator built with pymultigen.
+You may want to check out `pyecoregen <https://github.com/pyecore/pyecoregen>`_, a code generator
+from `pyecore <https://github.com/pyecore/pyecore>`_-based models to Python classes. It is a
+concrete Jinja2-based code generator built with pymultigen.
 
 Jinja2 is a template-based text generator. Writing a file-generator with Jinja therefore involves
 writing a template for each type of output file. In pymultigen you will then implement a ``Task``
