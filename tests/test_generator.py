@@ -1,6 +1,8 @@
 import os
 from unittest import mock
 
+import pytest
+
 from multigen.generator import Generator, Task, TemplateFileTask
 
 
@@ -57,3 +59,10 @@ def test__template_task__create_context():
 
     assert context['element'] is mock.sentinel.ELEMENT
     assert context['test_key'] is mock.sentinel.TEST_VALUE
+
+
+@pytest.mark.parametrize("factory", [Generator, Task])
+def test__unexpected_argument(factory):
+    with pytest.raises(AttributeError) as ex:
+        factory(unexpected=42)
+        assert 'unexpected' in ex.message

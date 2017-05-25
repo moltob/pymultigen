@@ -1,0 +1,7 @@
+[run]
+branch = True
+source = multigen
+
+[report]
+exclude_lines =
+    raise NotImplementedError
