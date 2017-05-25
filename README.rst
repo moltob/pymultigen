@@ -155,8 +155,8 @@ simply pass the appropriate formatter during task instantiation:
 
         ...
 
-Extending pymutigen
--------------------
+Extending pymultigen
+--------------------
 
 Contributions welcome!
 
