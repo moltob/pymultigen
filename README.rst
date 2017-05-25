@@ -18,8 +18,7 @@ pymultigen - Multi-file frontend for single-file code generators
 This small library adds multi-file management on top of one or more existing single-file code
 generators.
 
-.. contents::
-    :depth: 2
+.. contents:: :depth: 2
 
 Why would I need pymultigen?
 ----------------------------
