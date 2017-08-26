@@ -68,6 +68,18 @@ def test__task__run(mock_generate_file, mock_relative_path_for_element, mock_ens
     mock_generate_file.assert_called_once_with(mock.sentinel.ELEMENT, outfile)
 
 
+@mock.patch.object(Task, 'ensure_folder')
+@mock.patch.object(Task, 'relative_path_for_element', return_value=os.path.abspath('file.ext'))
+@mock.patch.object(Task, 'generate_file')
+def test__task__run_abspath(mock_generate_file, mock_relative_path_for_element, mock_ensure_folder):
+    task = Task()
+    task.run(mock.sentinel.ELEMENT, 'somefolder')
+
+    # no concat with with outfolder:
+    outfile = os.path.abspath('file.ext')
+    mock_ensure_folder.assert_called_once_with(outfile)
+
+
 def test__template_task__create_context():
     task = TemplateFileTask()
     task.global_context = dict(global_key=mock.sentinel.GLOBAL_VALUE)
