@@ -9,11 +9,11 @@ class JinjaGenerator(TemplateGenerator):
 
     def __init__(self, environment=None, **kwargs):
         super().__init__(**kwargs)
-        self.environment = environment or self.create_environment()
+        environment_ = environment or self.create_environment()
 
         # pass Jinja environment to tasks:
         for task in self.tasks:
-            task.environment = self.environment
+            task.environment = environment_
 
     def create_environment(self, **kwargs):
         """

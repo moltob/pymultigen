@@ -86,11 +86,33 @@ class Task:
 class TemplateGenerator(Generator):
     templates_path = 'templates'
 
+    def __init__(self, global_context=None, **kwargs):
+        super().__init__(**kwargs)
+        global_context = global_context or self.create_global_context()
+
+        # pass optional global context to tasks:
+        for task in self.tasks:
+            task.global_context = global_context
+
+    def create_global_context(self, **kwargs):
+        """Model-wide code generation context, passed to all templates."""
+        context = dict(**kwargs)
+        return context
+
 
 class TemplateFileTask(Task):
+    """Task to generate code via a code-generator template.
+
+    Attributes:
+        template_name: Name of the template to use for this task.
+        global_context: Template-independent context data, propagated by generator class.
+    """
     template_name = None
+    global_context = None
 
     def create_template_context(self, element, **kwargs):
-        context = dict(element=element)
-        context.update(**kwargs)
+        """Code generation context, specific to template and current element."""
+        context = dict(element=element, **kwargs)
+        if self.global_context:
+            context.update(**self.global_context)
         return context
