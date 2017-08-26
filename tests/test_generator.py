@@ -52,7 +52,7 @@ def test__template_generator__global_context_passed_to_tasks():
                    side_effect=lambda **kwargs: kwargs)
 def test__template_generator__global_context_constructed(mock_create_global_context):
     MyTemplateGenerator()
-    mock_create_global_context.assert_called_once()
+    assert mock_create_global_context.call_count == 1
 
 
 @mock.patch.object(Task, 'ensure_folder')
