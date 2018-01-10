@@ -95,10 +95,10 @@ The general form of such a ``Task`` looks like this:
         template_name = 'name-of-template.tpl'
 
         def filtered_elements(self, model):
-            """Return iterator based over elements in model that are passed to template."""
+            """Return iterator over elements in model that are passed to the above template."""
 
         def relative_path_for_element(self, element):
-            """Returns relative file path receiving the generator output for given element."""
+            """Return relative file path receiving the generator output for given element."""
 
 The workflow engine will initially call ``filtered_elements``. This method is expected to return an
 interator over model elements for which a single file needs to be generated. *Model* is meant here
@@ -112,7 +112,7 @@ before, it returns the corresponding filepath. Note that this path is interprete
 the top-level output path of the overall generation (see below). If subfolders are mentioned here,
 they are created on demand.
 
-One of more tasks classes like this must then be registered with a top-level generator. Just like
+One or more task classes like this must then be registered with a top-level generator. Just like
 before, a new ``Generator`` class is derived from the appropriate base class:
 
 .. code-block:: python
@@ -140,13 +140,13 @@ The base class implementation of {{create_environment}} passes {{templates_path}
 environment object to allow Jinja to find the template names specified in a ``Tasks``'s
 ``template_name``. By overriding this method you can extend the environment, e.g. to add filters and
 tests. Of course you can also completely replace the implementation, e.g. to change the way how
-templates how looked up.
+templates are looked up.
 
 The example above simply instantiates the new ``Task`` class. Here you can optionally pass a
 formatter function, that is then applied to the output of Jinja. Formatters are simple string
-transformations, some of which are built-in in the ``formatters.py`` module. If you actually are
+transformations, some of which are built into the ``formatters.py`` module. If you actually are
 writing a Python code generator you may want to clean up the generated code according to pep8,
-simply pass the appropriate formatter during task instantiation:
+so simply pass the appropriate formatter during task instantiation:
 
 .. code-block:: python
 
